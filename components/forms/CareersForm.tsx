@@ -4,24 +4,48 @@ import { useState } from "react";
 import { Input, Textarea, Select, Label } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { ROLES } from "@/lib/content/careers";
-import { CheckCircle2, Send, AlertCircle } from "lucide-react";
+import { CheckCircle2, Send, AlertCircle, XCircle } from "lucide-react";
+import { submitFormspreeMultipart } from "@/lib/forms/submit";
 
 type Status = "idle" | "submitting" | "submitted" | "error";
 
 export function CareersForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [consent, setConsent] = useState(false);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!consent) return;
     setStatus("submitting");
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-    // TODO: Velnox to supply — wire to real careers inbox (Resend / Formspree / Workmail).
-    // eslint-disable-next-line no-console
-    console.log("[careers] submission", data);
-    await new Promise((r) => setTimeout(r, 700));
-    setStatus("submitted");
+    setErrorMsg(null);
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    // Honeypot — bots tend to fill hidden fields
+    if ((fd.get("_gotcha") as string)?.length) {
+      setStatus("submitted");
+      return;
+    }
+
+    const name = (fd.get("name") as string) || "";
+    const role = (fd.get("role") as string) || "Velnox role";
+    fd.set("_subject", `Velnox Careers — ${name || "Applicant"} · ${role}`);
+    fd.set("_replyto", (fd.get("email") as string) || "");
+    fd.set("source", "velnoxcr · careers form");
+    fd.set("submittedAt", new Date().toISOString());
+    fd.set("consentNote", "I consent per DPDP Act 2023 and Velnox Confidentiality SOP");
+
+    const result = await submitFormspreeMultipart(fd);
+    if (result.ok) {
+      setStatus("submitted");
+      form.reset();
+      setConsent(false);
+    } else {
+      setStatus("error");
+      setErrorMsg(result.error);
+    }
   }
 
   if (status === "submitted") {
@@ -39,12 +63,34 @@ export function CareersForm() {
             applications under the Velnox Confidentiality SOP, aligned with the DPDP Act 2023.
           </p>
         </div>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="text-[12.5px] text-teal-300 underline-offset-4 hover:underline"
+        >
+          Apply for another role
+        </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-2xl bg-graphite-900/60 p-7 ring-1 ring-inset ring-white/5 lg:p-8">
+    <form
+      onSubmit={onSubmit}
+      action="https://formspree.io/f/mzdwlapy"
+      method="POST"
+      encType="multipart/form-data"
+      className="rounded-2xl bg-graphite-900/60 p-7 ring-1 ring-inset ring-white/5 lg:p-8"
+    >
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
+
       <div className="grid gap-5 md:grid-cols-2">
         <Field id="name" label="Full name" required>
           <Input id="name" name="name" required autoComplete="name" placeholder="Your name" />
@@ -67,7 +113,7 @@ export function CareersForm() {
             {ROLES.map((r) => (
               <option key={r.title} value={r.title}>{r.title}</option>
             ))}
-            <option value="other">Other (mention below)</option>
+            <option value="Other">Other (mention below)</option>
           </Select>
         </Field>
       </div>
@@ -79,7 +125,7 @@ export function CareersForm() {
       </div>
 
       <div className="mt-5">
-        <Field id="resume" label="Resume" hint="PDF preferred. We&apos;ll request the full document if shortlisted." required>
+        <Field id="resume" label="Resume" hint="PDF preferred. Sent to the People Team along with your application." required>
           <Input id="resume" name="resume" type="file" accept=".pdf,.doc,.docx" required className="cursor-pointer file:mr-3 file:rounded-md file:border-0 file:bg-graphite-800 file:px-3 file:py-1.5 file:text-graphite-100" />
         </Field>
       </div>
@@ -97,6 +143,16 @@ export function CareersForm() {
           line with the DPDP Act 2023 and the Velnox Confidentiality SOP.
         </span>
       </label>
+
+      {status === "error" && (
+        <div className="mt-5 flex items-start gap-3 rounded-xl bg-amber-500/10 p-4 ring-1 ring-inset ring-amber-500/30">
+          <XCircle size={18} className="mt-0.5 shrink-0 text-amber-300" strokeWidth={1.8} />
+          <div className="text-[13px] text-amber-100">
+            <div className="font-medium text-white">We couldn&apos;t send your application.</div>
+            <div className="mt-0.5">{errorMsg ?? "Please try again, or email careers@velnoxcr.com directly."}</div>
+          </div>
+        </div>
+      )}
 
       <div className="mt-7 flex flex-wrap items-center gap-4">
         <Button type="submit" disabled={status === "submitting" || !consent}>

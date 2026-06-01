@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Input, Textarea, Select, Label } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
-import { Send, CheckCircle2, AlertCircle } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, XCircle } from "lucide-react";
+import { submitFormspreeJson } from "@/lib/forms/submit";
 
-type Status = "idle" | "submitting" | "submitted";
+type Status = "idle" | "submitting" | "submitted" | "error";
 
 const INTENTS = [
   { value: "feasibility", label: "Feasibility request" },
@@ -24,6 +25,7 @@ export function ContactForm() {
   const initialIntent = params.get("intent") ?? "feasibility";
   const [intent, setIntent] = useState(initialIntent);
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [consent, setConsent] = useState(false);
 
   useEffect(() => {
@@ -35,12 +37,47 @@ export function ContactForm() {
     e.preventDefault();
     if (!consent) return;
     setStatus("submitting");
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-    // TODO: Velnox to supply — wire to real inboxes by intent (feasibility@, pv@, careers@, contact@).
-    // eslint-disable-next-line no-console
-    console.log("[contact] submission", data);
-    await new Promise((r) => setTimeout(r, 700));
-    setStatus("submitted");
+    setErrorMsg(null);
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    // Anti-spam honeypot — bots fill hidden inputs; humans don't.
+    if ((fd.get("_gotcha") as string)?.length) {
+      setStatus("submitted");
+      return;
+    }
+
+    const intentLabel = INTENTS.find((i) => i.value === fd.get("intent"))?.label ?? "Enquiry";
+    const name = (fd.get("name") as string) || "";
+    const org = (fd.get("organisation") as string) || "";
+
+    const payload: Record<string, unknown> = {
+      _subject: `Velnox enquiry — ${intentLabel}${name ? " · " + name : ""}${org ? " (" + org + ")" : ""}`,
+      _replyto: fd.get("email"),
+      source: "velnoxcr · contact form",
+      submittedAt: new Date().toISOString(),
+      name: fd.get("name"),
+      organisation: fd.get("organisation"),
+      email: fd.get("email"),
+      phone: fd.get("phone"),
+      country: fd.get("country"),
+      intent: fd.get("intent"),
+      intentLabel,
+      subject: fd.get("subject"),
+      message: fd.get("message"),
+      consent: "I consent per DPDP Act 2023 and Velnox Confidentiality SOP",
+    };
+
+    const result = await submitFormspreeJson(payload);
+    if (result.ok) {
+      setStatus("submitted");
+      form.reset();
+      setConsent(false);
+    } else {
+      setStatus("error");
+      setErrorMsg(result.error);
+    }
   }
 
   if (status === "submitted") {
@@ -55,12 +92,34 @@ export function ContactForm() {
             We&apos;ve routed your enquiry to the appropriate team. Expect a response within one business day.
           </p>
         </div>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="text-[12.5px] text-teal-300 underline-offset-4 hover:underline"
+        >
+          Send another message
+        </button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-2xl bg-graphite-900/60 p-7 ring-1 ring-inset ring-white/5 lg:p-8">
+    <form
+      onSubmit={onSubmit}
+      action="https://formspree.io/f/mzdwlapy"
+      method="POST"
+      className="rounded-2xl bg-graphite-900/60 p-7 ring-1 ring-inset ring-white/5 lg:p-8"
+    >
+      {/* Honeypot — hidden from users, visible to spam bots */}
+      <input
+        type="text"
+        name="_gotcha"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
+
       <div className="grid gap-5 md:grid-cols-2">
         <Field id="name" label="Full name" required>
           <Input id="name" name="name" required autoComplete="name" placeholder="Your name" />
@@ -111,6 +170,16 @@ export function ContactForm() {
           DPDP Act 2023 and the Velnox Confidentiality SOP.
         </span>
       </label>
+
+      {status === "error" && (
+        <div className="mt-5 flex items-start gap-3 rounded-xl bg-amber-500/10 p-4 ring-1 ring-inset ring-amber-500/30">
+          <XCircle size={18} className="mt-0.5 shrink-0 text-amber-300" strokeWidth={1.8} />
+          <div className="text-[13px] text-amber-100">
+            <div className="font-medium text-white">We couldn&apos;t send your message.</div>
+            <div className="mt-0.5">{errorMsg ?? "Please try again, or email contact@velnoxcr.com directly."}</div>
+          </div>
+        </div>
+      )}
 
       <div className="mt-7 flex flex-wrap items-center gap-4">
         <Button type="submit" disabled={status === "submitting" || !consent}>

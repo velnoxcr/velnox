@@ -47,8 +47,7 @@ Search the repo for the marker `TODO: Velnox to supply`. The list:
 | `lib/content/leadership.ts` | CEO and MD bios (names already correct: Suruthi Kanagaraj, Gobinath R) and the entire Advisory Committee roster. |
 | `lib/content/careers.ts` | Active openings (defaults are the standing role catalogue). |
 | `components/site/Footer.tsx` | The `CIN: TODO` token in the bottom bar. |
-| `components/forms/ContactForm.tsx` | The `console.log` stub at the submission handler — wire it to your real inbox (Resend, Formspree, or a `/api/contact` route hitting your SMTP). |
-| `components/forms/CareersForm.tsx` | Same — wire submission to your careers inbox / ATS. |
+| `lib/forms/submit.ts` | `FORMSPREE_ENDPOINT` — single constant the Contact and Careers forms POST to. Currently set to the Velnox Formspree form `mzdwlapy`. Swap this one constant to repoint every form on the site. |
 | `app/sitemap.ts` & `app/layout.tsx` | The `https://velnoxcr.com` URL once the production domain is final. |
 | `public/` | Add `og.png` (1200×630) and `apple-icon.png` if you want richer social-share / iOS home-screen visuals. The favicon at `app/icon.svg` ships dynamically already. |
 
