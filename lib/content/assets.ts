@@ -62,7 +62,7 @@ export const SECTION_IMAGERY = {
   experience:
     "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1600&q=80", // DNA visualisation
   careers:
-    "https://images.unsplash.com/photo-1581093458791-9d09f8e4d6a3?auto=format&fit=crop&w=1600&q=80", // lab collaboration
+    "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=80", // clinician with tablet (back-of-shoulder, culturally neutral)
 };
 
 /**
@@ -92,7 +92,7 @@ export const CAPABILITY_IMAGERY: Record<string, string> = {
   "ip-storage-accountability":
     "https://images.unsplash.com/photo-1631563019676-dade0dbdb8fc?auto=format&fit=crop&w=1200&q=80",
   "specimen-handling-shipping":
-    "https://images.unsplash.com/photo-1606206522398-de2c0a7adc81?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=1200&q=80",
   "monitoring-closeout-archival":
     "https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&w=1200&q=80",
 };
@@ -100,15 +100,15 @@ export const CAPABILITY_IMAGERY: Record<string, string> = {
 /** Therapeutic-area visuals shown on the Experience page. */
 export const THERAPEUTIC_IMAGERY: Record<string, string> = {
   oncology:
-    "https://images.unsplash.com/photo-1576670263888-a86e8c30e6e8?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1583468982228-19f19164aee2?auto=format&fit=crop&w=1200&q=80",
   cardiology:
     "https://images.unsplash.com/photo-1628348070889-cb656235b4eb?auto=format&fit=crop&w=1200&q=80",
   cns:
     "https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1200&q=80",
   infectious:
-    "https://images.unsplash.com/photo-1584036561584-d9c87afdb6f7?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1622621746668-59fb299bc4d7?auto=format&fit=crop&w=1200&q=80",
   devices:
     "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80",
   ayush:
-    "https://images.unsplash.com/photo-1611072337848-4cbed1f44c30?auto=format&fit=crop&w=1200&q=80",
+    "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=1200&q=80",
 };
