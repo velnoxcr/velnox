@@ -15,10 +15,10 @@ export function Card({
   return (
     <Tag
       className={cn(
-        "group relative overflow-hidden rounded-2xl bg-graphite-900/60 ring-1 ring-inset ring-white/5",
-        "shadow-elev backdrop-blur-sm",
+        "group relative overflow-hidden rounded-2xl bg-white ring-1 ring-inset ring-ink-100",
+        "shadow-card",
         hover &&
-          "transition-all duration-300 hover:bg-graphite-900 hover:ring-teal-400/40 hover:-translate-y-0.5",
+          "transition-all duration-300 hover:shadow-cardHover hover:ring-ocean-200 hover:-translate-y-1",
         className,
       )}
     >
@@ -26,7 +26,7 @@ export function Card({
         aria-hidden
         className={cn(
           "pointer-events-none absolute inset-x-0 top-0 h-px",
-          "bg-gradient-to-r from-transparent via-teal-400/30 to-transparent",
+          "bg-gradient-to-r from-transparent via-ocean-300/40 to-transparent",
           hover && "opacity-50 transition-opacity duration-300 group-hover:opacity-100",
         )}
       />

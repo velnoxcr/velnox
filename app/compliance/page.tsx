@@ -27,7 +27,7 @@ export default function CompliancePage() {
       <section className="py-12">
         <Container>
           <Reveal>
-            <div className="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-300">
+            <div className="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-ocean-700">
               Standards we operate under
             </div>
           </Reveal>
@@ -35,12 +35,12 @@ export default function CompliancePage() {
             {STANDARDS.map((s) => (
               <div
                 key={s.label}
-                className="flex items-start gap-3 rounded-xl bg-graphite-900/60 p-4 ring-1 ring-inset ring-white/5"
+                className="flex items-start gap-3 rounded-xl bg-white p-4 ring-1 ring-inset ring-ink-100 shadow-card"
               >
-                <ShieldCheck size={18} className="mt-0.5 shrink-0 text-teal-400" strokeWidth={1.8} />
+                <ShieldCheck size={18} className="mt-0.5 shrink-0 text-ocean-700" strokeWidth={2} />
                 <div>
-                  <div className="text-[13.5px] font-medium text-white">{s.label}</div>
-                  <div className="mt-1 text-[12px] leading-snug text-graphite-300">{s.note}</div>
+                  <div className="text-[13.5px] font-semibold text-ink-700">{s.label}</div>
+                  <div className="mt-1 text-[12px] leading-snug text-ink-400">{s.note}</div>
                 </div>
               </div>
             ))}
@@ -59,35 +59,35 @@ export default function CompliancePage() {
               <article
                 key={a.id}
                 id={a.id}
-                className="scroll-mt-24 border-b border-white/5 py-10 first:pt-0 last:border-b-0"
+                className="scroll-mt-24 border-b border-ink-100 py-10 first:pt-0 last:border-b-0"
               >
                 <Reveal>
                   <div className="flex flex-wrap items-center gap-3">
                     {a.id === "sae-workflow" && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/15 px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-amber-300 ring-1 ring-inset ring-amber-500/30">
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-2.5 py-1 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-amber-700 ring-1 ring-inset ring-amber-200">
                         <AlertTriangle size={11} /> Pharmacovigilance
                       </span>
                     )}
                     {a.sopRef && !a.id.startsWith("sae") && (
-                      <span className="text-[10.5px] uppercase tracking-[0.14em] text-graphite-300">
+                      <span className="text-[10.5px] font-semibold uppercase tracking-[0.14em] text-ocean-700">
                         {a.sopRef}
                       </span>
                     )}
                   </div>
                 </Reveal>
                 <Reveal delay={0.04}>
-                  <h2 className="mt-3 font-display text-display-md text-white text-balance">
+                  <h2 className="mt-3 font-display text-display-md font-semibold text-ink-700 text-balance">
                     {a.title}
                   </h2>
                 </Reveal>
                 <Reveal delay={0.08}>
-                  <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-graphite-100">{a.lede}</p>
+                  <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-ink-500">{a.lede}</p>
                 </Reveal>
                 <Reveal delay={0.12}>
-                  <ul className="mt-5 grid gap-2 text-[14px] text-graphite-200">
+                  <ul className="mt-5 grid gap-2 text-[14px] text-ink-600">
                     {a.bullets.map((b) => (
                       <li key={b} className="flex items-start gap-2.5">
-                        <span aria-hidden className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-teal-400/80" />
+                        <span aria-hidden className="mt-2 inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-ocean-600" />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -95,11 +95,11 @@ export default function CompliancePage() {
                 </Reveal>
                 {a.id === "sae-workflow" && a.sopRef && (
                   <Reveal delay={0.18}>
-                    <div className="mt-6 rounded-xl bg-amber-500/[0.06] p-4 ring-1 ring-inset ring-amber-500/25">
-                      <div className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-amber-300">
+                    <div className="mt-6 rounded-xl bg-amber-50 p-4 ring-1 ring-inset ring-amber-200">
+                      <div className="text-[11.5px] font-semibold uppercase tracking-[0.14em] text-amber-700">
                         {a.sopRef}
                       </div>
-                      <p className="mt-1 text-[13px] leading-relaxed text-graphite-100">
+                      <p className="mt-1 text-[13px] leading-relaxed text-ink-600">
                         Velnox&apos;s PV hotline is a real number staffed 24×7 by the
                         pharmacovigilance team. Sponsors and investigators can verify the line at
                         the start of every engagement.
@@ -111,11 +111,11 @@ export default function CompliancePage() {
             ))}
 
             <Reveal>
-              <div className="mt-10 flex flex-wrap items-center gap-3 rounded-2xl bg-graphite-900/60 p-6 ring-1 ring-inset ring-white/5">
-                <Download size={18} className="text-teal-300" strokeWidth={1.8} />
+              <div className="mt-10 flex flex-wrap items-center gap-3 rounded-2xl bg-white p-6 ring-1 ring-inset ring-ink-100 shadow-card">
+                <Download size={18} className="text-ocean-700" strokeWidth={2} />
                 <div className="flex-1">
-                  <div className="text-[14px] font-medium text-white">Compliance One-Pager</div>
-                  <div className="text-[12.5px] text-graphite-300">
+                  <div className="text-[14px] font-semibold text-ink-700">Compliance One-Pager</div>
+                  <div className="text-[12.5px] text-ink-400">
                     For sponsor procurement teams to forward internally. PDF download — available on request.
                   </div>
                 </div>

@@ -1,0 +1,3 @@
+# Drop your branded hero video here as `hero.mp4`.
+# Constraints: <= 6 MB, 1080p, H.264, muted, 8–15 s loop.
+# Until it's added, the hero shows the poster image defined in lib/content/assets.ts.

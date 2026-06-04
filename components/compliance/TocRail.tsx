@@ -30,7 +30,7 @@ export function TocRail({
 
   return (
     <nav aria-label="On this page" className="sticky top-24 hidden lg:block">
-      <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-graphite-300">
+      <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-ocean-800">
         On this page
       </div>
       <ul className="flex flex-col gap-1.5">
@@ -41,8 +41,8 @@ export function TocRail({
               className={cn(
                 "block rounded-lg border-l-2 px-3 py-1.5 text-[13px] leading-snug transition-colors",
                 active === i.id
-                  ? "border-l-teal-400 bg-white/[0.04] text-white"
-                  : "border-l-transparent text-graphite-200 hover:border-l-white/30 hover:text-white",
+                  ? "border-l-ocean-600 bg-ocean-50 text-ocean-900 font-semibold"
+                  : "border-l-transparent text-ink-400 hover:border-l-ink-300 hover:text-ocean-700",
               )}
             >
               {i.title}

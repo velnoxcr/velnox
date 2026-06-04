@@ -7,6 +7,7 @@ import { LeadershipCard } from "@/components/about/LeadershipCard";
 import { CtaBand } from "@/components/home/CtaBand";
 import { LEADERSHIP } from "@/lib/content/leadership";
 import { AUDIENCES } from "@/lib/content/audiences";
+import { SECTION_IMAGERY } from "@/lib/content/assets";
 import { CheckCircle2, ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -50,13 +51,13 @@ export default function AboutPage() {
       />
 
       <section className="py-16">
-        <Container className="grid gap-12 lg:grid-cols-12">
+        <Container className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7">
             <Reveal>
-              <h2 className="font-display text-display-md text-white">Our story</h2>
+              <h2 className="font-display text-display-md font-semibold text-ink-700">Our story</h2>
             </Reveal>
             <Reveal delay={0.05}>
-              <p className="mt-5 text-[15px] leading-relaxed text-graphite-200">
+              <p className="mt-5 text-[15px] leading-relaxed text-ink-500">
                 India needs CRO and SMO partners who treat SOP discipline as a product — not as
                 paperwork dusted off before an audit. Velnox was built around a written trial
                 lifecycle: every step (feasibility, site activation, consent, conduct, monitoring,
@@ -64,7 +65,7 @@ export default function AboutPage() {
               </p>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="mt-4 text-[15px] leading-relaxed text-graphite-200">
+              <p className="mt-4 text-[15px] leading-relaxed text-ink-500">
                 That discipline shows up in three ways sponsors notice: faster site activation,
                 cleaner monitoring visits, and audit findings closed before they escalate.
               </p>
@@ -73,35 +74,45 @@ export default function AboutPage() {
 
           <div className="lg:col-span-5">
             <Reveal direction="left">
-              <div className="rounded-2xl bg-graphite-900/60 p-7 ring-1 ring-inset ring-white/5">
-                <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-300">
-                  Vision
+              <div className="relative overflow-hidden rounded-3xl bg-ocean-gradient p-8 text-white shadow-cardHover">
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-0 opacity-25"
+                  style={{
+                    backgroundImage: "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)",
+                    backgroundSize: "22px 22px",
+                  }}
+                />
+                <div className="relative">
+                  <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-200">
+                    Vision
+                  </div>
+                  <p className="mt-3 font-display text-[20px] leading-snug text-balance">
+                    To be India&apos;s most audit-ready CRO/SMO partner — the one sponsors choose
+                    when the trial cannot afford a finding.
+                  </p>
                 </div>
-                <p className="mt-3 font-display text-[19px] leading-snug text-white text-balance">
-                  To be India&apos;s most audit-ready CRO/SMO partner — the one sponsors choose
-                  when the trial cannot afford a finding.
-                </p>
               </div>
             </Reveal>
           </div>
         </Container>
       </section>
 
-      <section className="py-16">
+      <section className="bg-paper-100 py-16">
         <Container>
           <Reveal>
-            <h2 className="font-display text-display-md text-white">Mission</h2>
+            <h2 className="font-display text-display-md font-semibold text-ink-700">Mission</h2>
           </Reveal>
           <RevealList className="mt-8 grid gap-4 md:grid-cols-3">
             {MISSION.map((m, i) => (
               <RevealItem
                 key={i}
-                className="relative rounded-2xl bg-graphite-900/60 p-6 ring-1 ring-inset ring-white/5"
+                className="relative rounded-2xl bg-white p-6 ring-1 ring-inset ring-ink-100 shadow-card"
               >
-                <div className="mb-3 font-display tabular text-[12px] font-semibold uppercase tracking-[0.18em] text-graphite-300">
-                  M.{String(i + 1).padStart(2, "0")}
+                <div className="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-xl bg-ocean-gradient font-display tabular text-[12.5px] font-bold text-white">
+                  {String(i + 1).padStart(2, "0")}
                 </div>
-                <p className="text-[14.5px] leading-relaxed text-graphite-100">{m}</p>
+                <p className="text-[14.5px] leading-relaxed text-ink-500">{m}</p>
               </RevealItem>
             ))}
           </RevealList>
@@ -111,18 +122,18 @@ export default function AboutPage() {
       <section className="py-16">
         <Container>
           <Reveal>
-            <h2 className="font-display text-display-md text-white">Operating principles</h2>
+            <h2 className="font-display text-display-md font-semibold text-ink-700">Operating principles</h2>
           </Reveal>
           <RevealList className="mt-8 grid gap-4 md:grid-cols-2">
             {PRINCIPLES.map((p) => (
               <RevealItem
                 key={p.title}
-                className="flex items-start gap-4 rounded-2xl bg-graphite-900/60 p-6 ring-1 ring-inset ring-white/5"
+                className="flex items-start gap-4 rounded-2xl bg-white p-6 ring-1 ring-inset ring-ink-100 shadow-card"
               >
-                <CheckCircle2 size={20} className="mt-0.5 shrink-0 text-teal-400" strokeWidth={1.8} />
+                <CheckCircle2 size={22} className="mt-0.5 shrink-0 text-teal-600" strokeWidth={2} />
                 <div>
-                  <div className="font-display text-[15.5px] font-semibold text-white">{p.title}</div>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-graphite-200">{p.body}</p>
+                  <div className="font-display text-[15.5px] font-semibold text-ink-700">{p.title}</div>
+                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-ink-400">{p.body}</p>
                 </div>
               </RevealItem>
             ))}
@@ -130,13 +141,13 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section id="leadership" className="py-16 scroll-mt-24">
+      <section id="leadership" className="bg-paper-100 py-16 scroll-mt-24">
         <Container>
           <Reveal>
-            <h2 className="font-display text-display-md text-white">Leadership</h2>
+            <h2 className="font-display text-display-md font-semibold text-ink-700">Leadership</h2>
           </Reveal>
           <Reveal delay={0.05}>
-            <p className="mt-3 max-w-2xl text-[14.5px] text-graphite-200">
+            <p className="mt-3 max-w-2xl text-[14.5px] text-ink-400">
               The two officers who sign off on every Velnox SOP and own the company&apos;s posture
               with sponsors and regulators.
             </p>
@@ -152,7 +163,7 @@ export default function AboutPage() {
             <div className="mt-6">
               <Link
                 href="/about/advisory"
-                className="group inline-flex items-center gap-1.5 text-[14px] font-medium text-teal-300 hover:text-teal-200"
+                className="group inline-flex items-center gap-1.5 text-[14px] font-semibold text-ocean-700 hover:text-ocean-900"
               >
                 See the Scientific & Advisory Committee
                 <ArrowUpRight
@@ -168,16 +179,16 @@ export default function AboutPage() {
       <section className="py-16">
         <Container>
           <Reveal>
-            <h2 className="font-display text-display-md text-white">Who we serve</h2>
+            <h2 className="font-display text-display-md font-semibold text-ink-700">Who we serve</h2>
           </Reveal>
           <RevealList className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {AUDIENCES.filter((a) => a.tier === "primary").map((a) => (
               <RevealItem
                 key={a.slug}
-                className="rounded-2xl bg-graphite-900/60 p-5 ring-1 ring-inset ring-white/5"
+                className="rounded-2xl bg-white p-5 ring-1 ring-inset ring-ink-100 shadow-card"
               >
-                <div className="text-[12px] uppercase tracking-[0.12em] text-teal-300">{a.title}</div>
-                <p className="mt-2 text-[13.5px] leading-relaxed text-graphite-200">{a.short}</p>
+                <div className="text-[12px] font-semibold uppercase tracking-[0.12em] text-ocean-700">{a.title}</div>
+                <p className="mt-2 text-[13.5px] leading-relaxed text-ink-400">{a.short}</p>
               </RevealItem>
             ))}
           </RevealList>

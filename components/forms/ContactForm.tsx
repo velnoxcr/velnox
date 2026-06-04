@@ -82,20 +82,20 @@ export function ContactForm() {
 
   if (status === "submitted") {
     return (
-      <div className="flex flex-col items-start gap-4 rounded-2xl bg-teal-400/10 p-7 ring-1 ring-inset ring-teal-400/40">
-        <span className="grid h-11 w-11 place-items-center rounded-full bg-teal-400/20 text-teal-300 ring-1 ring-inset ring-teal-400/40">
-          <CheckCircle2 size={22} strokeWidth={1.8} />
+      <div className="flex flex-col items-start gap-4 rounded-2xl bg-teal-50 p-7 ring-1 ring-inset ring-teal-200 shadow-card">
+        <span className="grid h-11 w-11 place-items-center rounded-full bg-teal-100 text-teal-700 ring-1 ring-inset ring-teal-300">
+          <CheckCircle2 size={22} strokeWidth={2} />
         </span>
         <div>
-          <div className="font-display text-[18px] font-semibold text-white">Thank you — message received.</div>
-          <p className="mt-2 text-[14px] leading-relaxed text-graphite-100">
+          <div className="font-display text-[18px] font-semibold text-ink-700">Thank you — message received.</div>
+          <p className="mt-2 text-[14px] leading-relaxed text-ink-500">
             We&apos;ve routed your enquiry to the appropriate team. Expect a response within one business day.
           </p>
         </div>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="text-[12.5px] text-teal-300 underline-offset-4 hover:underline"
+          className="text-[12.5px] font-semibold text-teal-700 underline-offset-4 hover:underline"
         >
           Send another message
         </button>
@@ -108,7 +108,7 @@ export function ContactForm() {
       onSubmit={onSubmit}
       action="https://formspree.io/f/mzdwlapy"
       method="POST"
-      className="rounded-2xl bg-graphite-900/60 p-7 ring-1 ring-inset ring-white/5 lg:p-8"
+      className="rounded-2xl bg-white p-7 ring-1 ring-inset ring-ink-100 shadow-card lg:p-8"
     >
       {/* Honeypot — hidden from users, visible to spam bots */}
       <input
@@ -157,13 +157,13 @@ export function ContactForm() {
         </Field>
       </div>
 
-      <label className="mt-6 flex items-start gap-3 text-[13px] text-graphite-200">
+      <label className="mt-6 flex items-start gap-3 text-[13px] text-ink-500">
         <input
           type="checkbox"
           checked={consent}
           onChange={(e) => setConsent(e.target.checked)}
           required
-          className="mt-1 h-4 w-4 rounded border-white/20 bg-graphite-900 text-teal-400 focus:ring-teal-400"
+          className="mt-1 h-4 w-4 rounded border-ink-300 bg-white text-ocean-600 focus:ring-ocean-500"
         />
         <span>
           I consent to Velnox processing the personal data above for the purpose of this enquiry, in line with the
@@ -172,10 +172,10 @@ export function ContactForm() {
       </label>
 
       {status === "error" && (
-        <div className="mt-5 flex items-start gap-3 rounded-xl bg-amber-500/10 p-4 ring-1 ring-inset ring-amber-500/30">
-          <XCircle size={18} className="mt-0.5 shrink-0 text-amber-300" strokeWidth={1.8} />
-          <div className="text-[13px] text-amber-100">
-            <div className="font-medium text-white">We couldn&apos;t send your message.</div>
+        <div className="mt-5 flex items-start gap-3 rounded-xl bg-amber-50 p-4 ring-1 ring-inset ring-amber-200">
+          <XCircle size={18} className="mt-0.5 shrink-0 text-amber-600" strokeWidth={1.8} />
+          <div className="text-[13px] text-ink-500">
+            <div className="font-semibold text-ink-700">We couldn&apos;t send your message.</div>
             <div className="mt-0.5">{errorMsg ?? "Please try again, or email contact@velnoxcr.com directly."}</div>
           </div>
         </div>
@@ -187,7 +187,7 @@ export function ContactForm() {
           <Send size={15} />
         </Button>
         {!consent && (
-          <span className="inline-flex items-center gap-1.5 text-[12.5px] text-graphite-300">
+          <span className="inline-flex items-center gap-1.5 text-[12.5px] text-ink-300">
             <AlertCircle size={13} /> Consent is required to send.
           </span>
         )}

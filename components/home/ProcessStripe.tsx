@@ -4,51 +4,56 @@ import { PROCESS_STEPS } from "@/lib/content/process";
 
 export function ProcessStripe() {
   return (
-    <section className="relative py-24 sm:py-28">
+    <section className="relative overflow-hidden py-24 sm:py-28">
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(30,64,175,0.06),transparent_70%)]" />
       <Container>
-        <div className="mb-12 grid items-end gap-6 lg:grid-cols-12">
+        <div className="mb-14 grid items-end gap-6 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <Reveal>
-              <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-300">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-ocean-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-ocean-800 ring-1 ring-inset ring-ocean-200">
+                <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-ocean-600" />
                 The Velnox Process
               </div>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="font-display text-display-lg text-white text-balance">
-                A documented lifecycle from feasibility to archival.
+              <h2 className="font-display text-display-lg font-semibold tracking-tightest text-ink-700 text-balance">
+                Simple steps to get our services.
               </h2>
             </Reveal>
           </div>
           <div className="lg:col-span-4">
             <Reveal delay={0.1} direction="left">
-              <p className="text-[14.5px] text-graphite-200">
-                Six steps, each backed by a SOP and an accountable owner. No ad-hoc, no
-                undocumented hand-offs.
+              <p className="text-[14.5px] text-ink-400">
+                Six clearly-defined steps from confidential feasibility to controlled archival —
+                each owned by a documented SOP.
               </p>
             </Reveal>
           </div>
         </div>
 
-        <RevealList className="relative grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-6">
+        <RevealList className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-6">
           {PROCESS_STEPS.map((s, i) => (
             <RevealItem key={s.step}>
-              <div className="group relative h-full overflow-hidden rounded-2xl bg-graphite-900/60 p-5 ring-1 ring-inset ring-white/5 transition-all duration-300 hover:bg-graphite-900 hover:ring-teal-400/30">
-                <div className="mb-3 flex items-center justify-between">
-                  <span className="font-display text-[10.5px] font-semibold uppercase tracking-[0.18em] text-graphite-300">
-                    Step {String(s.step).padStart(2, "0")}
+              <div className="group relative h-full rounded-2xl bg-white p-5 ring-1 ring-inset ring-ink-100 shadow-card transition-all duration-300 hover:shadow-cardHover hover:ring-ocean-200 hover:-translate-y-1">
+                {/* Hexagon-style step number */}
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="relative grid h-12 w-12 place-items-center">
+                    <span aria-hidden className="absolute inset-0 rounded-2xl bg-ocean-gradient opacity-10" />
+                    <span aria-hidden className="absolute inset-0 rounded-2xl bg-ocean-gradient opacity-100" />
+                    <span className="relative font-display tabular text-[15px] font-bold text-white">
+                      {String(s.step).padStart(2, "0")}
+                    </span>
                   </span>
-                  <span className="text-[10.5px] tabular text-graphite-400">{s.sop}</span>
+                  <span className="text-[10.5px] font-semibold uppercase tracking-[0.16em] tabular text-ink-300">{s.sop}</span>
                 </div>
-                <div className="text-[15px] font-semibold leading-tight text-white">{s.title}</div>
-                <div className="mt-2 text-[12.5px] leading-relaxed text-graphite-200">{s.note}</div>
-                <span
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-5 bottom-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                />
+                <div className="font-display text-[15.5px] font-semibold leading-tight text-ink-700">{s.title}</div>
+                <div className="mt-2 text-[12.5px] leading-relaxed text-ink-400">{s.note}</div>
+
+                {/* Connecting line on large screens */}
                 {i < PROCESS_STEPS.length - 1 && (
                   <span
                     aria-hidden
-                    className="pointer-events-none absolute right-0 top-1/2 hidden h-[1px] w-3 -translate-y-1/2 translate-x-3 bg-gradient-to-r from-white/20 to-transparent lg:block"
+                    className="pointer-events-none absolute right-[-20px] top-9 hidden h-[2px] w-5 bg-gradient-to-r from-ocean-300/70 to-transparent lg:block"
                   />
                 )}
               </div>

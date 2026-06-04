@@ -2,23 +2,25 @@ import Link from "next/link";
 import * as React from "react";
 import { cn } from "@/lib/utils/cn";
 
-type Variant = "primary" | "secondary" | "ghost" | "amber";
+type Variant = "primary" | "secondary" | "ghost" | "amber" | "white";
 type Size = "sm" | "md" | "lg";
 
 const BASE =
-  "inline-flex select-none items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 ease-out " +
-  "disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-400 focus-visible:ring-offset-2 focus-visible:ring-offset-graphite-950 " +
+  "inline-flex select-none items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 ease-out " +
+  "disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white " +
   "whitespace-nowrap";
 
 const VARIANT: Record<Variant, string> = {
   primary:
-    "bg-teal-400 text-graphite-950 hover:bg-teal-300 active:bg-teal-500 shadow-[0_8px_30px_-12px_rgba(45,212,191,0.6)]",
+    "bg-ocean-gradient text-white hover:brightness-110 active:brightness-95 shadow-oceanGlow",
   secondary:
-    "bg-graphite-800/80 text-graphite-50 ring-1 ring-inset ring-white/10 hover:bg-graphite-700/80 hover:ring-white/15",
+    "bg-white text-ocean-800 ring-1 ring-inset ring-ocean-200 hover:bg-ocean-50 hover:ring-ocean-300 shadow-card",
   ghost:
-    "bg-transparent text-graphite-100 hover:bg-white/5",
+    "bg-transparent text-ink-500 hover:bg-ink-50 hover:text-ocean-800",
   amber:
-    "bg-amber-500 text-graphite-950 hover:bg-amber-400 shadow-[0_8px_30px_-12px_rgba(245,158,11,0.55)]",
+    "bg-amber-500 text-ink-700 hover:bg-amber-400 shadow-[0_8px_30px_-12px_rgba(245,158,11,0.55)]",
+  white:
+    "bg-white text-ocean-900 hover:bg-paper-100 shadow-card",
 };
 
 const SIZE: Record<Size, string> = {
@@ -60,8 +62,7 @@ export function Button(props: LinkButtonProps | ButtonProps) {
       </Link>
     );
   }
-  const { onClick, type = "button", disabled, ...rest } =
-    props as ButtonProps;
+  const { onClick, type = "button", disabled, ...rest } = props as ButtonProps;
   return (
     <button {...rest} type={type} onClick={onClick} disabled={disabled} className={classes}>
       {children}

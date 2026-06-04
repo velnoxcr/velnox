@@ -7,9 +7,9 @@ export function MarqueeChips() {
   const items = MARQUEE_CHIPS.map((label, i) => (
     <span
       key={`${label}-${i}`}
-      className="inline-flex items-center gap-2 rounded-full bg-graphite-800/70 px-4 py-2 text-[13px] text-graphite-100 ring-1 ring-inset ring-white/10"
+      className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[13px] font-medium text-ink-700 ring-1 ring-inset ring-ink-100 shadow-card"
     >
-      <span className="inline-block h-1.5 w-1.5 rounded-full bg-teal-400/80" />
+      <span className="inline-block h-1.5 w-1.5 rounded-full bg-ocean-600" />
       {label}
     </span>
   ));
@@ -19,10 +19,11 @@ export function MarqueeChips() {
       <Container>
         <Reveal>
           <div className="mb-6 flex items-center justify-between gap-4">
-            <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-graphite-300">
+            <div className="inline-flex items-center gap-2 rounded-full bg-ocean-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-ocean-800 ring-1 ring-inset ring-ocean-200">
+              <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-ocean-600" />
               Therapeutic & Study-Type Coverage
             </div>
-            <div className="hidden text-[12px] text-graphite-300 sm:block">paused on hover</div>
+            <div className="hidden text-[12px] text-ink-300 sm:block">paused on hover</div>
           </div>
         </Reveal>
       </Container>

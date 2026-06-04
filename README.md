@@ -2,7 +2,7 @@
 
 Public-facing portfolio for **Velnox Clinical Research and Solutions Pvt. Ltd.** (Velnox RSCRO) — an India-based CRO/SMO operating under ICH-GCP and the New Drugs & Clinical Trials Rules, 2019.
 
-Built with **Next.js 14 (App Router) · TypeScript · Tailwind CSS · Framer Motion · Lucide React**, in a dark "biotech-graphite" visual language with a precision-teal accent (and a strictly-reserved amber for Pharmacovigilance signalling).
+Built with **Next.js 14 (App Router) · TypeScript · Tailwind CSS · Framer Motion · Lucide React**, in a clean, light, medical-premium visual language — deep navy (`ocean`) for brand, teal as secondary accent, amber strictly reserved for Pharmacovigilance signalling.
 
 ---
 
@@ -23,17 +23,44 @@ Requires Node.js 18.17+ (or 20+).
 
 | Route | Purpose |
 |---|---|
-| `/` | Hero, trust strip, 6-card capability grid, marquee of TAs/study types, lifecycle stripe, audience tiles, stat band, CTA. |
+| `/` | Video hero, trust strip, About cut-down, 6-card capability grid (with imagery), marquee of TAs/study types, lifecycle stripe, audience tiles, animated stat band, CTA. |
 | `/about` | Story, vision, mission, four operating principles, leadership (CEO & MD). |
 | `/about/advisory` | Scientific & Advisory Committee (placeholder roster — Velnox to supply). |
-| `/capabilities` | Filterable 12-card capability grid, each mapped 1:1 to a Velnox SOP. |
+| `/capabilities` | Filterable 12-card capability grid with imagery, each mapped 1:1 to a Velnox SOP. |
 | `/experience` | Therapeutic areas, study phases, product categories, anonymised case snapshots. |
 | `/services` | "Who We Serve" — 4 primary audience cards + 4 adjacent + how engagements start. |
 | `/compliance` | Long-form page with sticky TOC: standards, ethics, confidentiality, COI, quality, zero-tolerance, SAE workflow, archival. |
-| `/careers` | Roles, eligibility, training, application form. |
-| `/contact` | Intent-routed form, contact cards, **amber SAE/PV hotline callout**. |
+| `/careers` | Roles, eligibility, training, application form (Formspree-wired). |
+| `/contact` | Intent-routed form (Formspree-wired), contact cards, **amber SAE/PV hotline callout**. |
 
 The primary CTA across the site is **"Request Feasibility" → `/contact?intent=feasibility`** (the intent param prefills the form).
+
+---
+
+## Adding your branded hero video
+
+Drop a video at `public/videos/hero.mp4` and it picks up automatically. Constraints:
+
+- **≤ 6 MB** compressed (you're loading this on every mobile device)
+- **1080p H.264 MP4**, silent, **8–15 s loop**, no on-screen text
+- Soft, slow motion — pipetting / microscope work / cold-storage door opens
+- If filming people, prefer **Indian / South-Asian** investigators, CRCs, study nurses
+
+If no video is supplied, the hero shows the poster image at `lib/content/assets.ts → HERO_VIDEO.poster` (currently a stock researcher photo). The hero looks intentional either way.
+
+To swap the poster, edit `HERO_VIDEO.poster` to point to a `/images/` path under `public/` or any image URL.
+
+---
+
+## Section imagery
+
+All section / capability imagery is centralised in **`lib/content/assets.ts`**. Edit one constant, the corresponding card updates.
+
+- `SECTION_IMAGERY.*` — Who We Are, Process, Audiences, Compliance, Experience, Careers
+- `CAPABILITY_IMAGERY[slug]` — one image per capability (Site Readiness, Feasibility, SIV, etc.)
+- `THERAPEUTIC_IMAGERY[slug]` — for the Experience page TA tiles
+
+Defaults are neutral lab / equipment / data-visualisation imagery from Unsplash. Swap to branded photography (drop files under `public/images/` and reference as `/images/<name>.jpg`) when ready.
 
 ---
 
@@ -46,22 +73,21 @@ Search the repo for the marker `TODO: Velnox to supply`. The list:
 | `lib/content/nav.ts` | `phoneMain`, `phonePv24x7`, `whatsappLink`, full head-office & branch addresses, CIN. |
 | `lib/content/leadership.ts` | CEO and MD bios (names already correct: Suruthi Kanagaraj, Gobinath R) and the entire Advisory Committee roster. |
 | `lib/content/careers.ts` | Active openings (defaults are the standing role catalogue). |
+| `lib/content/assets.ts` | All imagery and the hero video reference — swap to branded assets when ready. |
 | `components/site/Footer.tsx` | The `CIN: TODO` token in the bottom bar. |
-| `lib/forms/submit.ts` | `FORMSPREE_ENDPOINT` — single constant the Contact and Careers forms POST to. Currently set to the Velnox Formspree form `mzdwlapy`. Swap this one constant to repoint every form on the site. |
+| `lib/forms/submit.ts` | `FORMSPREE_ENDPOINT` — currently `mzdwlapy`. Swap to repoint every form on the site. |
 | `app/sitemap.ts` & `app/layout.tsx` | The `https://velnoxcr.com` URL once the production domain is final. |
-| `public/` | Add `og.png` (1200×630) and `apple-icon.png` if you want richer social-share / iOS home-screen visuals. The favicon at `app/icon.svg` ships dynamically already. |
-
-The site is designed to look complete with these placeholders in place — every TODO is a single line you can replace without touching JSX.
+| `public/og.png`, `public/apple-icon.png` | Drop these in for richer social-share / iOS home-screen visuals. The favicon at `app/icon.svg` ships dynamically already. |
 
 ---
 
 ## Visual & motion principles
 
-- **Dark first.** Graphite `#0B0F12` base, near-white text. A light toggle is not in scope for v1.
-- **Single accent.** Precision teal `#2DD4BF` for CTAs and active states. Used sparingly — it should read as a signal, not as decoration.
+- **Light, premium, medical.** White base, deep navy (`ocean-900` `#1E3A8A` → `ocean-700` `#1D4ED8`) for brand, teal `#0D9488` as a secondary CTA accent.
 - **Amber is for safety only.** `#F59E0B` is reserved for Pharmacovigilance / SAE callouts (footer hotline badge, Contact page banner, Compliance SAE anchor). Do not introduce amber elsewhere.
-- **Motion is subtle.** Scroll-reveal on transform + opacity, 600 ms ease, fires once. Marquee on therapeutic chips at 60 s loop, paused on hover. No carousels. No parallax. No cursor effects. The hero has a quiet particle field that pauses when the tab is hidden.
-- **Type.** Inter for body, Inter (heavier weights, tightened tracking) for display. Tabular numerals on stats.
+- **Motion is subtle.** Scroll-reveal on transform + opacity, 600 ms ease, fires once. Marquee on therapeutic chips at 60 s loop, paused on hover. Animated count-up on stat band. No carousels. No parallax. No cursor effects.
+- **Type.** Inter for body, **Plus Jakarta Sans** (display weights, tightened tracking) for headings, **Fraunces** loaded for occasional serif pulls. Tabular numerals on stats.
+- **Hero video** is auto-played, muted, loops, falls back to a poster image. Always mobile-fits via `object-cover`.
 
 ---
 
@@ -71,32 +97,29 @@ The site is designed to look complete with these placeholders in place — every
 velnoxcr/
 ├── app/                       # App Router pages
 │   ├── layout.tsx             # root layout, fonts, SEO, header/footer/TrustStrip
-│   ├── globals.css
+│   ├── globals.css            # design tokens, scrollbar, motion utils
 │   ├── page.tsx               # Home
-│   ├── about/page.tsx
-│   ├── about/advisory/page.tsx
+│   ├── about/{page,advisory/page}.tsx
 │   ├── capabilities/page.tsx
 │   ├── experience/page.tsx
 │   ├── services/page.tsx
 │   ├── compliance/page.tsx
 │   ├── careers/page.tsx
 │   ├── contact/page.tsx
-│   ├── sitemap.ts
-│   ├── robots.ts
-│   └── icon.svg
+│   ├── sitemap.ts · robots.ts · icon.svg
 ├── components/
 │   ├── site/                  # Header, Footer, TrustStrip, PageHero, Container, Logo
 │   ├── motion/                # Reveal, Marquee, ParticleField
 │   ├── ui/                    # Button, Card, Input, Badge, Icon
-│   ├── home/                  # Hero, WhoWeAre, CapabilityGrid, MarqueeChips, ProcessStripe,
-│   │                          # AudienceTiles, StatBand, CtaBand
+│   ├── home/                  # Hero (with video), WhoWeAre, CapabilityGrid, MarqueeChips,
+│   │                          # ProcessStripe, AudienceTiles, StatBand (count-up), CtaBand
 │   ├── about/LeadershipCard.tsx
 │   ├── capabilities/CapabilityFilter.tsx
 │   ├── compliance/TocRail.tsx
-│   └── forms/                 # ContactForm, CareersForm
+│   └── forms/                 # ContactForm + CareersForm (Formspree-wired)
 ├── lib/
 │   ├── content/               # ALL the editable content lives here
-│   │   ├── nav.ts             # Nav, primary CTA, COMPANY constants
+│   │   ├── nav.ts             # nav, primary CTA, COMPANY constants
 │   │   ├── capabilities.ts    # 12 capabilities, mapped to SOPs
 │   │   ├── process.ts         # 6-step lifecycle
 │   │   ├── experience.ts      # TAs, phases, products, marquee chips
@@ -104,9 +127,14 @@ velnoxcr/
 │   │   ├── compliance.ts      # 7 compliance anchor sections + standards
 │   │   ├── leadership.ts      # CEO/MD + advisory committee
 │   │   ├── careers.ts         # roles, eligibility, onboarding
-│   │   └── stats.ts           # 3-up trust stats
+│   │   ├── stats.ts           # 3-up trust stats
+│   │   └── assets.ts          # ALL imagery + hero video — swap here, nowhere else
+│   ├── forms/submit.ts        # FORMSPREE_ENDPOINT — one constant for every form
 │   └── utils/cn.ts
-├── tailwind.config.ts         # design tokens (graphite, teal, amber, fonts)
+├── public/
+│   ├── videos/                # Drop hero.mp4 here
+│   └── images/                # Drop branded photography here
+├── tailwind.config.ts         # design tokens (ocean, teal, amber, ink, paper)
 └── README.md
 ```
 
@@ -114,17 +142,19 @@ velnoxcr/
 
 ## Editing content
 
-Almost everything you'd reasonably want to change is a one-line edit in `lib/content/*.ts`. No JSX changes needed for: company contact details, capability blurbs, process steps, therapeutic areas, audience segments, compliance bullets, roles, eligibility, leadership bios.
+Almost everything you'd reasonably want to change is a one-line edit in `lib/content/*.ts`. No JSX changes needed for: company contact details, capability blurbs, process steps, therapeutic areas, audience segments, compliance bullets, roles, eligibility, leadership bios, imagery, or the Formspree endpoint.
 
 If you change a route or rename a page, also update `lib/content/nav.ts` (used by the header, footer, mobile drawer, and sitemap).
 
 ---
 
-## Deployment notes (for later)
+## Deployment
 
-- **Vercel** is the lowest-friction deploy: connect this repo, `npm run build`, done.
-- Form handlers currently `console.log` the payload. For production, add a `/app/api/contact/route.ts` and wire it to your transactional email provider, or front it with Formspree / Tally if you want a no-backend option.
-- Set `NEXT_PUBLIC_SITE_URL` (or just edit `app/layout.tsx` and `app/sitemap.ts`) when the production domain is final.
+This repo is configured to deploy to **GitHub Pages** on every push to `main` via `.github/workflows/deploy.yml`. Production URL: `https://velnoxcr.github.io/velnox/`.
+
+One-time step in repo settings: **Settings → Pages → Source → GitHub Actions**.
+
+When you have a custom domain, edit `app/sitemap.ts` and `app/layout.tsx` to update URLs, and drop a `CNAME` file in `public/`.
 
 ---
 

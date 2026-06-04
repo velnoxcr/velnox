@@ -29,7 +29,7 @@ export default function ExperiencePage() {
       <section className="py-12">
         <Container>
           <Reveal>
-            <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-300">
+            <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-ocean-700">
               Regulatory study types
             </div>
           </Reveal>
@@ -38,7 +38,7 @@ export default function ExperiencePage() {
               {STUDY_TYPES.map((t) => (
                 <li
                   key={t}
-                  className="rounded-full bg-graphite-800/60 px-3.5 py-1.5 text-[13px] text-graphite-100 ring-1 ring-inset ring-white/10"
+                  className="rounded-full bg-white px-3.5 py-1.5 text-[13px] font-medium text-ink-600 ring-1 ring-inset ring-ink-100 shadow-card"
                 >
                   {t}
                 </li>
@@ -48,8 +48,8 @@ export default function ExperiencePage() {
         </Container>
       </section>
 
-      <section className="py-16">
-        <Container className="grid gap-8 lg:grid-cols-3">
+      <section className="bg-paper-100 py-16">
+        <Container className="grid gap-6 lg:grid-cols-3">
           <Column title="Therapeutic Areas" items={THERAPEUTIC_AREAS} />
           <Column title="Study Phases & Designs" items={STUDY_PHASES} />
           <Column title="Product Categories" items={PRODUCT_CATEGORIES} />
@@ -59,12 +59,12 @@ export default function ExperiencePage() {
       <section className="py-16">
         <Container>
           <Reveal>
-            <div className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-teal-300">
+            <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-ocean-700">
               Selected case snapshots
             </div>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="font-display text-display-md text-white text-balance">
+            <h2 className="font-display text-display-md font-semibold text-ink-700 text-balance">
               Anonymised per the Velnox Confidentiality SOP.
             </h2>
           </Reveal>
@@ -77,22 +77,22 @@ export default function ExperiencePage() {
             ].map((c, i) => (
               <RevealItem
                 key={i}
-                className="relative rounded-2xl bg-graphite-900/60 p-6 ring-1 ring-inset ring-white/5"
+                className="relative rounded-2xl bg-white p-6 ring-1 ring-inset ring-ink-100 shadow-card"
               >
-                <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.12em] text-graphite-300">
-                  <span>{c.phase}</span>
-                  <span className="inline-flex items-center gap-1.5 text-graphite-400">
+                <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-400">
+                  <span className="text-ocean-700">{c.phase}</span>
+                  <span className="inline-flex items-center gap-1.5">
                     <Lock size={11} /> NDA
                   </span>
                 </div>
-                <div className="mt-3 font-display text-[17px] font-semibold text-white">{c.ta}</div>
-                <div className="mt-1 text-[12.5px] text-graphite-300">{c.sites} sites · India</div>
-                <p className="mt-4 text-[13.5px] leading-relaxed text-graphite-100">{c.metric}</p>
+                <div className="mt-3 font-display text-[17px] font-semibold text-ink-700">{c.ta}</div>
+                <div className="mt-1 text-[12.5px] text-ink-400">{c.sites} sites · India</div>
+                <p className="mt-4 text-[13.5px] leading-relaxed text-ink-500">{c.metric}</p>
               </RevealItem>
             ))}
           </RevealList>
           <Reveal delay={0.15}>
-            <p className="mt-6 max-w-3xl text-[12.5px] italic text-graphite-300">
+            <p className="mt-6 max-w-3xl text-[12.5px] italic text-ink-400">
               Case snapshots are illustrative of Velnox&apos;s operating envelope. Sponsor-specific
               outcomes are shared only under NDA.
             </p>
@@ -107,16 +107,16 @@ export default function ExperiencePage() {
 
 function Column({ title, items }: { title: string; items: string[] }) {
   return (
-    <div className="rounded-2xl bg-graphite-900/60 p-6 ring-1 ring-inset ring-white/5">
+    <div className="rounded-2xl bg-white p-7 ring-1 ring-inset ring-ink-100 shadow-card">
       <Reveal>
-        <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-graphite-300">
+        <div className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ocean-700">
           {title}
         </div>
       </Reveal>
-      <ul className="grid gap-2 text-[13.5px] text-graphite-100">
+      <ul className="grid gap-2 text-[13.5px] text-ink-600">
         {items.map((i) => (
           <li key={i} className="flex items-start gap-2.5">
-            <span aria-hidden className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-teal-400/80" />
+            <span aria-hidden className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-ocean-600" />
             {i}
           </li>
         ))}

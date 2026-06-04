@@ -28,21 +28,21 @@ export default function AdvisoryPage() {
               <RevealItem key={a.name}>
                 <Card>
                   <CardBody>
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-300">
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ocean-700">
                       {a.specialty}
                     </div>
-                    <div className="mt-3 font-display text-[17px] font-semibold text-white">{a.name}</div>
-                    <div className="mt-0.5 text-[12.5px] uppercase tracking-[0.1em] text-graphite-300">
+                    <div className="mt-3 font-display text-[17px] font-semibold text-ink-700">{a.name}</div>
+                    <div className="mt-0.5 text-[12.5px] uppercase tracking-[0.1em] text-ink-400">
                       {a.role}
                     </div>
-                    <p className="mt-4 text-[13.5px] leading-relaxed text-graphite-200">{a.bio}</p>
+                    <p className="mt-4 text-[13.5px] leading-relaxed text-ink-500">{a.bio}</p>
                   </CardBody>
                 </Card>
               </RevealItem>
             ))}
           </RevealList>
           <Reveal delay={0.1}>
-            <p className="mt-10 max-w-3xl text-[13px] italic text-graphite-300">
+            <p className="mt-10 max-w-3xl text-[13px] italic text-ink-400">
               Committee roster shown above is a placeholder — Velnox to confirm and supply
               official bios before publication.
             </p>
