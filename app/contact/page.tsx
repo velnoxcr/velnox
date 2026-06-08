@@ -5,88 +5,40 @@ import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { COMPANY } from "@/lib/content/nav";
-import { AlertTriangle, MapPin, Phone, Mail, MessageSquare } from "lucide-react";
+import { MapPin, Phone, Mail, MessageSquare, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Velnox — feasibility requests, sponsor enquiries, site partnerships, careers. Dedicated 24×7 PV hotline for SAE notifications.",
+    "Contact Velnox Clinical Research & Solutions — Pollachi (Head Office) and Mysuru (First Operational Site).",
 };
 
 export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
-        title="Get in touch with us."
-        intro="Feasibility requests, sponsor enquiries, site partnerships, careers — one form, the right person responds within one business day."
+        eyebrow="Contact Us"
+        title="Get in touch with Velnox."
+        intro="Partnership requests, sponsor enquiries, site collaborations, training enrolments — one form, the right person responds within one business day."
       />
 
       <section className="py-12">
-        <Container className="grid gap-5 md:grid-cols-3">
+        <Container className="grid gap-5 md:grid-cols-2">
           <Reveal>
             <ContactCard
-              title="Head Office"
-              lines={[
-                COMPANY.addressHead.line1,
-                COMPANY.addressHead.line2,
-                `${COMPANY.addressHead.city}, ${COMPANY.addressHead.state} ${COMPANY.addressHead.pin}`,
-                COMPANY.addressHead.country,
-              ]}
+              title={COMPANY.addressHead.label}
+              city={`${COMPANY.addressHead.city}, ${COMPANY.addressHead.state}`}
+              country={COMPANY.addressHead.country}
+              note={COMPANY.addressHead.note}
             />
           </Reveal>
-          <Reveal delay={0.05}>
+          <Reveal delay={0.06}>
             <ContactCard
-              title="Site Network"
-              lines={[
-                COMPANY.addressBranch.line1,
-                COMPANY.addressBranch.line2,
-                `${COMPANY.addressBranch.city}, ${COMPANY.addressBranch.state} ${COMPANY.addressBranch.pin}`,
-                COMPANY.addressBranch.country,
-              ]}
+              title={COMPANY.addressBranch.label}
+              city={`${COMPANY.addressBranch.city}, ${COMPANY.addressBranch.state}`}
+              country={COMPANY.addressBranch.country}
+              note={COMPANY.addressBranch.note}
             />
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="h-full rounded-2xl bg-white p-6 ring-1 ring-inset ring-ink-100 shadow-card">
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ocean-700">Direct channels</div>
-              <ul className="mt-4 grid gap-3 text-[13.5px]">
-                <li className="flex items-start gap-2.5 text-ink-600">
-                  <Mail size={15} className="mt-0.5 text-ocean-700" />
-                  <div>
-                    <div className="font-medium text-ink-700">{COMPANY.emailGeneral}</div>
-                    <div className="text-[12px] text-ink-400">General enquiries</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2.5 text-ink-600">
-                  <Mail size={15} className="mt-0.5 text-ocean-700" />
-                  <div>
-                    <div className="font-medium text-ink-700">{COMPANY.emailFeasibility}</div>
-                    <div className="text-[12px] text-ink-400">Sponsor / feasibility</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2.5 text-ink-600">
-                  <Phone size={15} className="mt-0.5 text-ocean-700" />
-                  <div>
-                    <div className="tabular font-medium text-ink-700">{COMPANY.phoneMain}</div>
-                    <div className="text-[12px] text-ink-400">Main line</div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2.5 text-ink-600">
-                  <MessageSquare size={15} className="mt-0.5 text-ocean-700" />
-                  <div>
-                    <a
-                      href={COMPANY.whatsappLink}
-                      target="_blank"
-                      rel="noopener"
-                      className="font-medium text-ink-700 hover:text-ocean-700"
-                    >
-                      WhatsApp · text us
-                    </a>
-                    <div className="text-[12px] text-ink-400">Non-urgent enquiries only</div>
-                  </div>
-                </li>
-              </ul>
-            </div>
           </Reveal>
         </Container>
       </section>
@@ -94,25 +46,53 @@ export default function ContactPage() {
       <section className="py-8">
         <Container>
           <Reveal>
-            <div className="flex flex-col gap-4 rounded-2xl bg-amber-50 p-5 ring-1 ring-inset ring-amber-200 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-              <div className="flex items-start gap-3">
-                <AlertTriangle size={22} className="mt-0.5 shrink-0 text-amber-600" strokeWidth={2} />
-                <div>
-                  <div className="font-display text-[15.5px] font-semibold text-ink-700">
-                    Serious Adverse Event (SAE) notification?
+            <div className="rounded-2xl bg-ocean-gradient p-6 text-white shadow-cardHover sm:p-7">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-teal-200">
+                Direct channels
+              </div>
+              <div className="mt-4 grid gap-5 sm:grid-cols-3">
+                <a
+                  href={`tel:${COMPANY.phoneMain.replace(/\s/g, "")}`}
+                  className="group flex items-start gap-3 hover:text-white"
+                >
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/15 ring-1 ring-inset ring-white/25">
+                    <Phone size={18} strokeWidth={2} />
+                  </span>
+                  <div>
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/70">Call us</div>
+                    <div className="tabular mt-0.5 font-display text-[16px] font-semibold">{COMPANY.phoneMain}</div>
                   </div>
-                  <p className="mt-1 text-[13.5px] leading-relaxed text-ink-600">
-                    Please call the Velnox PV Hotline directly — do not use the form below. SAEs are reportable
-                    within 24 hours per New Drugs &amp; Clinical Trials Rules 2019.
-                  </p>
+                </a>
+                <a
+                  href={`mailto:${COMPANY.emailGeneral}`}
+                  className="group flex items-start gap-3 hover:text-white"
+                >
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/15 ring-1 ring-inset ring-white/25">
+                    <Mail size={18} strokeWidth={2} />
+                  </span>
+                  <div>
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/70">Email us</div>
+                    <div className="mt-0.5 font-display text-[16px] font-semibold">{COMPANY.emailGeneral}</div>
+                  </div>
+                </a>
+                <div className="flex items-start gap-3">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-white/15 ring-1 ring-inset ring-white/25">
+                    <Globe size={18} strokeWidth={2} />
+                  </span>
+                  <div>
+                    <div className="text-[11px] font-semibold uppercase tracking-[0.12em] text-white/70">Website</div>
+                    <div className="mt-0.5 font-display text-[16px] font-semibold">{COMPANY.website}</div>
+                  </div>
                 </div>
               </div>
-              <a
-                href={`tel:${COMPANY.phonePv24x7.replace(/\s/g, "")}`}
-                className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-4 py-2 text-[13.5px] font-semibold text-ink-700 hover:bg-amber-400 shadow-card"
-              >
-                <Phone size={14} /> {COMPANY.phonePv24x7}
-              </a>
+
+              <div className="mt-6 flex items-center gap-2 border-t border-white/15 pt-5 text-[12.5px] text-white/80">
+                <MessageSquare size={14} strokeWidth={2} />
+                <a href={COMPANY.whatsappLink} target="_blank" rel="noopener" className="font-semibold underline-offset-4 hover:underline">
+                  WhatsApp us
+                </a>
+                <span>· for quick, non-urgent enquiries.</span>
+              </div>
             </div>
           </Reveal>
         </Container>
@@ -133,8 +113,8 @@ export default function ContactPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-4 text-[14.5px] leading-relaxed text-ink-500">
-                Feasibility enquiries reach the operations team. Sponsor RFPs reach the MD. Careers reach the
-                People Team. Compliance requests reach Quality. One form, the right inbox.
+                Partnership and sponsor enquiries reach the leadership team. Site collaborations reach Operations.
+                Training enrolments reach the People Team. General enquiries reach the right inbox.
               </p>
             </Reveal>
           </div>
@@ -151,22 +131,28 @@ export default function ContactPage() {
 
 function ContactCard({
   title,
-  lines,
+  city,
+  country,
+  note,
 }: {
   title: string;
-  lines: string[];
+  city: string;
+  country: string;
+  note?: string;
 }) {
   return (
-    <div className="h-full rounded-2xl bg-white p-6 ring-1 ring-inset ring-ink-100 shadow-card">
-      <div className="flex items-center gap-3">
-        <MapPin size={18} className="text-ocean-700" strokeWidth={2} />
-        <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ocean-700">{title}</div>
+    <div className="h-full rounded-2xl bg-white p-7 ring-1 ring-inset ring-ink-100 shadow-card">
+      <div className="flex items-start gap-4">
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-ocean-gradient text-white shadow-oceanGlow">
+          <MapPin size={20} strokeWidth={1.8} />
+        </span>
+        <div>
+          <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ocean-700">{title}</div>
+          <div className="mt-1 font-display text-[20px] font-semibold text-ink-700">{city}</div>
+          <div className="text-[12.5px] text-ink-400">{country}</div>
+          {note && <div className="mt-3 text-[13px] leading-relaxed text-ink-500">{note}</div>}
+        </div>
       </div>
-      <address className="mt-4 not-italic text-[13.5px] leading-relaxed text-ink-600">
-        {lines.map((l, i) => (
-          <div key={i}>{l}</div>
-        ))}
-      </address>
     </div>
   );
 }

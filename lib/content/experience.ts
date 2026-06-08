@@ -1,66 +1,51 @@
-export const STUDY_TYPES = [
-  "Indian Registration Studies",
-  "New Drug Applications / IND",
-  "NCE (Indian Origin) Studies",
-  "US FDA Bridging Studies",
-  "EU / EMA Registration Studies",
-  "Investigator-Initiated Trials",
-];
+/**
+ * Therapeutic expertise & coverage — sourced from the corporate document.
+ * (Replaces the previous SOP-driven experience structure.)
+ */
 
-export const THERAPEUTIC_AREAS = [
+export const THERAPEUTIC_EXPERTISE = [
   "Oncology",
   "Cardiology",
-  "CNS / Psychiatry",
-  "Gastroenterology",
-  "Infectious Diseases",
-  "Nephrology",
+  "Endocrinology",
   "Neurology",
   "Ophthalmology",
-  "Pediatrics & Neonatology",
-  "Dentistry",
-  "Endocrinology",
-  "AYUSH",
-];
-
-export const STUDY_PHASES = [
-  "Phase I (incl. BA / BE)",
-  "Phase II",
-  "Phase III — multi-centre & global",
-  "Phase IV / PMS",
-  "In-patient",
-  "Out-patient",
-  "Community",
-  "Investigator-Initiated",
-];
-
-export const PRODUCT_CATEGORIES = [
-  "NCEs (small molecules)",
-  "Fixed-Dose Combinations",
-  "Biologics & Recombinants",
+  "Pediatrics",
+  "General Medicine",
+  "Psychiatry",
+  "Infectious Diseases",
   "Vaccines",
-  "Medical Devices — critical / non-critical",
-  "In-Vitro Diagnostics",
-  "AYUSH Formulations",
-  "Nutraceuticals",
-  "Cosmetics",
-  "Food & Health Products",
+  "Medical Devices",
+  "Observational Studies",
 ];
 
 export const MARQUEE_CHIPS = [
   "Oncology",
   "Cardiology",
-  "CNS",
-  "Infectious Disease",
-  "Nephrology",
+  "Endocrinology",
+  "Neurology",
   "Ophthalmology",
   "Pediatrics",
-  "AYUSH",
-  "BA / BE",
+  "General Medicine",
+  "Psychiatry",
+  "Infectious Diseases",
+  "Vaccines",
   "Medical Devices",
+  "Observational Studies",
   "Phase I",
   "Phase II",
   "Phase III",
   "Phase IV / PMS",
-  "Investigator-Initiated",
-  "Bridging Studies",
 ];
+
+/** Legacy exports kept for any remaining references — empty so build stays clean. */
+export const STUDY_TYPES = [
+  "Phase I",
+  "Phase II",
+  "Phase III",
+  "Phase IV / Post-Marketing",
+  "Observational Studies",
+  "Investigator-Initiated Trials",
+];
+export const THERAPEUTIC_AREAS = THERAPEUTIC_EXPERTISE;
+export const STUDY_PHASES = STUDY_TYPES;
+export const PRODUCT_CATEGORIES: string[] = [];

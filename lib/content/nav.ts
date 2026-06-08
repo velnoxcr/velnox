@@ -7,50 +7,52 @@ export const PRIMARY_NAV: NavItem[] = [
     label: "About",
     href: "/about",
     children: [
-      { label: "Leadership", href: "/about#leadership", description: "CEO and Managing Director" },
-      { label: "Advisory Committee", href: "/about/advisory", description: "Scientific oversight" },
-      { label: "Careers", href: "/careers", description: "Build a career in clinical research" },
+      { label: "Our Story", href: "/about#story", description: "Vision and mission" },
+      { label: "Leadership", href: "/about#leadership", description: "Founder, CEO, COO" },
+      { label: "Our Presence", href: "/about#presence", description: "Pollachi & Mysuru" },
     ],
   },
-  { label: "Capabilities", href: "/capabilities" },
-  { label: "Experience", href: "/experience" },
-  { label: "Who We Serve", href: "/services" },
-  { label: "Compliance", href: "/compliance" },
+  { label: "Services", href: "/services" },
+  { label: "Training", href: "/training" },
   { label: "Contact", href: "/contact" },
 ];
 
 export const PRIMARY_CTA = {
-  label: "Request Feasibility",
-  href: "/contact?intent=feasibility",
+  label: "Partner with Velnox",
+  href: "/contact?intent=partnership",
 };
 
 export const COMPANY = {
-  legalName: "Velnox Clinical Research and Solutions Pvt. Ltd.",
+  legalName: "Velnox Clinical Research & Solutions",
   shortName: "Velnox",
-  trademark: "Velnox RSCRO",
-  founded: 2026,
+  trademark: "Velnox",
+  tagline: "Advancing Healthcare Through Research Excellence",
+  organisationType: "SMO / CRSO",
+  founder: "Mr. Gobinath R",
   ceo: "Mrs. Suruthi Kanagaraj",
-  md: "Mr. Gobinath R",
-  emailGeneral: "contact@velnoxcr.com",
-  emailFeasibility: "feasibility@velnoxcr.com",
-  emailPv: "pv@velnoxcr.com",
-  phoneMain: "+91 00000 00000", // TODO: Velnox to supply
-  phonePv24x7: "+91 00000 00000", // TODO: Velnox to supply — 24x7 SAE hotline
-  whatsappLink: "https://wa.me/910000000000", // TODO: Velnox to supply
+  coo: "Mr. Selvakumar D",
+  emailGeneral: "info@velnoxresearch.com",
+  emailPartnership: "info@velnoxresearch.com",
+  emailPv: "info@velnoxresearch.com",
+  emailTraining: "info@velnoxresearch.com",
+  phoneMain: "+91 75020 46867",
+  phonePv: "+91 75020 46867",
+  whatsappLink: "https://wa.me/917502046867",
+  website: "www.velnoxresearch.com",
   addressHead: {
-    line1: "Velnox Head Office", // TODO: Velnox to supply
-    line2: "Address line 2",
-    city: "Chennai",
+    label: "Corporate Head Office",
+    line1: "Velnox Clinical Research & Solutions",
+    city: "Pollachi",
     state: "Tamil Nadu",
-    pin: "600 000",
     country: "India",
+    note: "Near Coimbatore · Gateway to the Western Ghats",
   },
   addressBranch: {
-    line1: "Velnox Branch / Site Network Office", // TODO: Velnox to supply
-    line2: "Address line 2",
-    city: "Bengaluru",
+    label: "First Operational Site",
+    line1: "Velnox Clinical Research & Solutions",
+    city: "Mysuru",
     state: "Karnataka",
-    pin: "560 000",
     country: "India",
+    note: "Karnataka's cultural and healthcare capital",
   },
 };

@@ -23,15 +23,11 @@ Requires Node.js 18.17+ (or 20+).
 
 | Route | Purpose |
 |---|---|
-| `/` | Video hero, trust strip, About cut-down, 6-card capability grid (with imagery), marquee of TAs/study types, lifecycle stripe, audience tiles, animated stat band, CTA. |
-| `/about` | Story, vision, mission, four operating principles, leadership (CEO & MD). |
-| `/about/advisory` | Scientific & Advisory Committee (placeholder roster — Velnox to supply). |
-| `/capabilities` | Filterable 12-card capability grid with imagery, each mapped 1:1 to a Velnox SOP. |
-| `/experience` | Therapeutic areas, study phases, product categories, anonymised case snapshots. |
-| `/services` | "Who We Serve" — 4 primary audience cards + 4 adjacent + how engagements start. |
-| `/compliance` | Long-form page with sticky TOC: standards, ethics, confidentiality, COI, quality, zero-tolerance, SAE workflow, archival. |
-| `/careers` | Roles, eligibility, training, application form (Formspree-wired). |
-| `/contact` | Intent-routed form (Formspree-wired), contact cards, **amber SAE/PV hotline callout**. |
+| `/` | Video hero with the official tagline "Advancing Healthcare Through Research Excellence", About + Vision/Mission, Services preview, Therapeutic Expertise marquee, Engagement Lifecycle, Why-Choose, Presence (Pollachi/Mysuru), Leadership, Training preview, Partnership tiles, animated stat band, CTA. |
+| `/about` | Our Story, Vision & Mission, Our Presence (Pollachi & Mysuru), Founder & Managing Director (Mr. Gobinath R), Leadership team (CEO + COO), Partnership message. |
+| `/services` | Thirteen services from the corporate document, filterable by group, plus Core Competencies (12) and Therapeutic Expertise (12 areas). |
+| `/training` | CRC Training & Development — four GCP foundations, who can apply, training format, enrolment form (Formspree-wired). |
+| `/contact` | Pollachi head office, Mysuru operational site, direct channels (phone / email / WhatsApp / website), intent-routed form. |
 
 The primary CTA across the site is **"Request Feasibility" → `/contact?intent=feasibility`** (the intent param prefills the form).
 

@@ -3,105 +3,53 @@ export type Audience = {
   title: string;
   short: string;
   icon: string;
-  tier: "primary" | "secondary";
-  bullets: string[];
 };
 
+/**
+ * Who Velnox partners with — drawn from the corporate document's
+ * "Partnership Message" and home-page audience list.
+ */
 export const AUDIENCES: Audience[] = [
   {
-    slug: "sponsors-pharma",
+    slug: "sponsors",
     title: "Sponsors & Pharma",
-    short: "Phase I–IV, BA/BE and global studies executed under ICH-GCP and NDCT Rules 2019.",
+    short:
+      "Phase I–IV trials, post-marketing studies and end-to-end clinical research delivery.",
     icon: "Beaker",
-    tier: "primary",
-    bullets: [
-      "Confidential feasibility with honest go/no-go",
-      "Tetra-partite contracts with documented deliverables",
-      "24-hour SAE reporting workflow",
-      "Audit-ready ISF and 5+ year archival",
-    ],
   },
   {
-    slug: "hospitals-investigators",
+    slug: "cros",
+    title: "Contract Research Organisations",
+    short:
+      "Site network, monitoring capacity and operational support for sponsor-led CRO programmes.",
+    icon: "Network",
+  },
+  {
+    slug: "hospitals",
     title: "Hospitals & Investigators",
-    short: "Site activation, ISF setup, EC support and CRC deployment.",
+    short:
+      "Site activation, ethics committee support, CRC coverage and SOP development for hospital sites.",
     icon: "Building2",
-    tier: "primary",
-    bullets: [
-      "Pre-study readiness audit and gap closure",
-      "EC dossier preparation and submission",
-      "Trained CRCs and study nurses on assignment",
-      "Investigator training on protocol-specific procedures",
-    ],
   },
   {
     slug: "medical-devices",
-    title: "Medical Devices & Diagnostics",
-    short: "Device studies under India's Medical Device Rules with post-market surveillance.",
+    title: "Medical Device Companies",
+    short:
+      "Device studies, investigator coordination and post-market surveillance support.",
     icon: "Stethoscope",
-    tier: "primary",
-    bullets: [
-      "Critical and non-critical device study design",
-      "Investigator and site appraisals",
-      "Adverse-event / device-deficiency reporting",
-      "Post-market surveillance documentation",
-    ],
   },
   {
-    slug: "ayush-consumer",
-    title: "AYUSH, Nutraceutical & Consumer Health",
-    short: "Efficacy and safety studies aligned to AYUSH and FSSAI frameworks.",
-    icon: "Leaf",
-    tier: "primary",
-    bullets: [
-      "Ayurveda, Siddha, Homeopathy and Unani formulation studies",
-      "Nutraceutical efficacy and safety claims",
-      "FSSAI-aligned documentation",
-      "Consumer-perception and tolerability studies",
-    ],
-  },
-  {
-    slug: "cosmetics-fmcg",
-    title: "Cosmetics & FMCG",
-    short: "Efficacy and safety substantiation for claim-bearing products.",
-    icon: "Sparkles",
-    tier: "secondary",
-    bullets: [
-      "Dermatological efficacy and tolerability studies",
-      "Claim-substantiation protocol design",
-    ],
-  },
-  {
-    slug: "agri-food",
-    title: "Agri & Food Processing",
-    short: "Applied research in food and agricultural products.",
-    icon: "Wheat",
-    tier: "secondary",
-    bullets: [
-      "Applied food-science studies",
-      "Functional-food tolerability work",
-    ],
-  },
-  {
-    slug: "doctors",
-    title: "Investigators & Doctors",
-    short: "Career-path and site-partnership engagements for clinicians.",
-    icon: "UserRound",
-    tier: "secondary",
-    bullets: [
-      "Site-partnership programmes",
-      "Investigator training and certification",
-    ],
-  },
-  {
-    slug: "academia",
-    title: "Academia & Students",
-    short: "Internships and HR for Clinical Research (HR4CR) pipelines.",
+    slug: "academic",
+    title: "Academic Researchers & Institutions",
+    short:
+      "Investigator-initiated studies, research methodology support and student CRC training.",
     icon: "GraduationCap",
-    tier: "secondary",
-    bullets: [
-      "Internship pathways into CRO/SMO operations",
-      "HR4CR training and certification",
-    ],
+  },
+  {
+    slug: "healthcare-orgs",
+    title: "Healthcare Organisations",
+    short:
+      "Cross-functional partnerships that connect care delivery with clinical research.",
+    icon: "HeartHandshake",
   },
 ];

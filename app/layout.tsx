@@ -26,30 +26,34 @@ const serif = Fraunces({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://velnoxcr.com"),
+  metadataBase: new URL("https://www.velnoxresearch.com"),
   title: {
-    default: "Velnox Clinical Research and Solutions — Audit-ready CRO/SMO, India",
-    template: "%s · Velnox Clinical Research and Solutions",
+    default: "Velnox Clinical Research & Solutions — Advancing Healthcare Through Research Excellence",
+    template: "%s · Velnox Clinical Research & Solutions",
   },
   description:
-    "Velnox Clinical Research and Solutions (Velnox RSCRO) — an India-based CRO/SMO delivering ICH-GCP–compliant clinical trials from feasibility to archival. Site readiness, informed consent (AV) per NDCT Rules 2019, 24-hour SAE reporting, NABL/CAP-aligned labs.",
+    "Velnox Clinical Research & Solutions is a Clinical Research Service Organisation (SMO/CRSO) supporting Sponsors, CROs, Hospitals, Investigators, Pharmaceutical Companies, Medical Device Companies and Academic Researchers with end-to-end clinical research services across India. Head office: Pollachi, Tamil Nadu. Operational site: Mysuru, Karnataka.",
   keywords: [
-    "Clinical Research Organisation",
-    "Site Management Organisation",
-    "CRO India",
+    "Clinical Research Service Organization",
     "SMO India",
-    "ICH-GCP",
-    "New Drugs and Clinical Trials Rules 2019",
+    "CRSO India",
+    "Clinical Trial Site Management",
+    "Patient Recruitment",
     "Pharmacovigilance",
+    "Clinical Data Management",
+    "Medical Writing",
+    "GCP",
+    "Pollachi clinical research",
+    "Mysuru clinical research",
     "Velnox",
   ],
-  authors: [{ name: "Velnox Clinical Research and Solutions" }],
+  authors: [{ name: "Velnox Clinical Research & Solutions" }],
   openGraph: {
     type: "website",
-    title: "Velnox Clinical Research and Solutions",
+    title: "Velnox Clinical Research & Solutions",
     description:
-      "Audit-ready CRO/SMO. ICH-GCP, NDCT Rules 2019, NABL/CAP-aligned labs, 24-hour SAE workflow, 5-year archival.",
-    siteName: "Velnox Clinical Research and Solutions",
+      "Advancing Healthcare Through Research Excellence. End-to-end clinical research services across India.",
+    siteName: "Velnox Clinical Research & Solutions",
   },
   robots: { index: true, follow: true },
 };

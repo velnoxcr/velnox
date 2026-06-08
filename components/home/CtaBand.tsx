@@ -4,11 +4,11 @@ import { Reveal } from "@/components/motion/Reveal";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
 export function CtaBand({
-  eyebrow = "Get started",
-  headline = "Bring us your protocol. We will tell you if India is the right site — honestly.",
-  sub = "Confidential feasibility assessment. Typical turnaround: 7 working days.",
-  primary = { label: "Request Feasibility", href: "/contact?intent=feasibility" },
-  secondary = { label: "Speak to the MD", href: "/contact?intent=md" },
+  eyebrow = "Partner with Velnox",
+  headline = "Bring us your protocol — we'll build the right team around it.",
+  sub = "Velnox is happy to collaborate with Sponsors, CROs, Hospitals, Investigators, Academic Institutions and Healthcare Organisations across India and globally.",
+  primary = { label: "Partner with Velnox", href: "/contact?intent=partnership" },
+  secondary = { label: "Explore our services", href: "/services" },
 }: {
   eyebrow?: string;
   headline?: string;

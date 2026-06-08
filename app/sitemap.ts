@@ -1,18 +1,8 @@
 import type { MetadataRoute } from "next";
 
-const BASE = "https://velnoxcr.com";
+const BASE = "https://www.velnoxresearch.com";
 
-const ROUTES = [
-  "",
-  "/about",
-  "/about/advisory",
-  "/capabilities",
-  "/experience",
-  "/services",
-  "/compliance",
-  "/careers",
-  "/contact",
-];
+const ROUTES = ["", "/about", "/services", "/training", "/contact"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return ROUTES.map((r) => ({

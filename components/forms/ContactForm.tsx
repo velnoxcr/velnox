@@ -10,19 +10,19 @@ import { submitFormspreeJson } from "@/lib/forms/submit";
 type Status = "idle" | "submitting" | "submitted" | "error";
 
 const INTENTS = [
-  { value: "feasibility", label: "Feasibility request" },
-  { value: "site-partnership", label: "Site partnership" },
-  { value: "sponsor-rfp", label: "Sponsor RFP" },
-  { value: "careers", label: "Careers" },
-  { value: "md", label: "Speak to the Managing Director" },
-  { value: "compliance-pdf", label: "Compliance one-pager (PDF)" },
-  { value: "media", label: "Media / Press" },
-  { value: "other", label: "Other" },
+  { value: "partnership",  label: "Partnership / collaboration" },
+  { value: "sponsor",      label: "Sponsor / CRO enquiry" },
+  { value: "site",         label: "Hospital / Investigator site" },
+  { value: "training",     label: "CRC training enrolment" },
+  { value: "training-inst", label: "Institutional training programme" },
+  { value: "general",      label: "General enquiry" },
+  { value: "media",        label: "Media / Press" },
+  { value: "other",        label: "Other" },
 ];
 
-export function ContactForm() {
+export function ContactForm({ defaultIntent = "partnership" }: { defaultIntent?: string }) {
   const params = useSearchParams();
-  const initialIntent = params.get("intent") ?? "feasibility";
+  const initialIntent = params.get("intent") ?? defaultIntent;
   const [intent, setIntent] = useState(initialIntent);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -42,7 +42,6 @@ export function ContactForm() {
     const form = e.currentTarget;
     const fd = new FormData(form);
 
-    // Anti-spam honeypot — bots fill hidden inputs; humans don't.
     if ((fd.get("_gotcha") as string)?.length) {
       setStatus("submitted");
       return;
@@ -55,7 +54,7 @@ export function ContactForm() {
     const payload: Record<string, unknown> = {
       _subject: `Velnox enquiry — ${intentLabel}${name ? " · " + name : ""}${org ? " (" + org + ")" : ""}`,
       _replyto: fd.get("email"),
-      source: "velnoxcr · contact form",
+      source: "velnoxresearch.com · contact form",
       submittedAt: new Date().toISOString(),
       name: fd.get("name"),
       organisation: fd.get("organisation"),
@@ -66,7 +65,7 @@ export function ContactForm() {
       intentLabel,
       subject: fd.get("subject"),
       message: fd.get("message"),
-      consent: "I consent per DPDP Act 2023 and Velnox Confidentiality SOP",
+      consent: "Consent given for data processing per applicable privacy regulations",
     };
 
     const result = await submitFormspreeJson(payload);
@@ -110,7 +109,6 @@ export function ContactForm() {
       method="POST"
       className="rounded-2xl bg-white p-7 ring-1 ring-inset ring-ink-100 shadow-card lg:p-8"
     >
-      {/* Honeypot — hidden from users, visible to spam bots */}
       <input
         type="text"
         name="_gotcha"
@@ -125,7 +123,7 @@ export function ContactForm() {
           <Input id="name" name="name" required autoComplete="name" placeholder="Your name" />
         </Field>
         <Field id="organisation" label="Organisation">
-          <Input id="organisation" name="organisation" autoComplete="organization" placeholder="Sponsor, hospital, etc." />
+          <Input id="organisation" name="organisation" autoComplete="organization" placeholder="Sponsor, hospital, CRO, etc." />
         </Field>
         <Field id="email" label="Email" required>
           <Input id="email" name="email" type="email" required autoComplete="email" placeholder="you@example.com" />
@@ -166,8 +164,8 @@ export function ContactForm() {
           className="mt-1 h-4 w-4 rounded border-ink-300 bg-white text-ocean-600 focus:ring-ocean-500"
         />
         <span>
-          I consent to Velnox processing the personal data above for the purpose of this enquiry, in line with the
-          DPDP Act 2023 and the Velnox Confidentiality SOP.
+          I consent to Velnox processing the personal data above for the purpose of this enquiry, in line with
+          applicable privacy regulations.
         </span>
       </label>
 
@@ -176,7 +174,7 @@ export function ContactForm() {
           <XCircle size={18} className="mt-0.5 shrink-0 text-amber-600" strokeWidth={1.8} />
           <div className="text-[13px] text-ink-500">
             <div className="font-semibold text-ink-700">We couldn&apos;t send your message.</div>
-            <div className="mt-0.5">{errorMsg ?? "Please try again, or email contact@velnoxcr.com directly."}</div>
+            <div className="mt-0.5">{errorMsg ?? "Please try again, or email info@velnoxresearch.com directly."}</div>
           </div>
         </div>
       )}
@@ -205,7 +203,7 @@ function Field({
     <div>
       <Label htmlFor={id} required={required}>{label}</Label>
       {children}
-      {hint && <p className="mt-1.5 text-[11.5px] text-graphite-300">{hint}</p>}
+      {hint && <p className="mt-1.5 text-[11.5px] text-ink-300">{hint}</p>}
     </div>
   );
 }

@@ -21,7 +21,7 @@ export function MarqueeChips() {
           <div className="mb-6 flex items-center justify-between gap-4">
             <div className="inline-flex items-center gap-2 rounded-full bg-ocean-50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-ocean-800 ring-1 ring-inset ring-ocean-200">
               <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-ocean-600" />
-              Therapeutic & Study-Type Coverage
+              Therapeutic Expertise
             </div>
             <div className="hidden text-[12px] text-ink-300 sm:block">paused on hover</div>
           </div>

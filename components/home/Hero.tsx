@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArrowRight, ShieldCheck, Play } from "lucide-react";
 import { HERO_VIDEO } from "@/lib/content/assets";
+import { COMPANY } from "@/lib/content/nav";
 
 export function Hero() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -27,7 +28,7 @@ export function Hero() {
 
   return (
     <section className="relative isolate min-h-[88vh] overflow-hidden bg-ink-900">
-      {/* Background — poster is always shown; video paints over it when available */}
+      {/* Poster is always painted underneath; video paints over when available */}
       <img
         src={HERO_VIDEO.poster}
         alt=""
@@ -52,10 +53,9 @@ export function Hero() {
         </video>
       )}
 
-      {/* Multi-layer gradient scrim for legibility */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-[linear-gradient(110deg,rgba(15,23,42,0.82)_0%,rgba(15,23,42,0.55)_50%,rgba(30,58,138,0.55)_100%)]"
+        className="absolute inset-0 bg-[linear-gradient(110deg,rgba(15,23,42,0.85)_0%,rgba(15,23,42,0.6)_50%,rgba(30,58,138,0.6)_100%)]"
       />
       <div
         aria-hidden
@@ -66,7 +66,6 @@ export function Hero() {
         className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-white"
       />
 
-      {/* Subtle starfield dots */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-30"
@@ -81,44 +80,44 @@ export function Hero() {
           <Reveal>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/12 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white ring-1 ring-inset ring-white/25 glass-on-hero">
               <span aria-hidden className="inline-block h-1.5 w-1.5 animate-pulse-slow rounded-full bg-teal-300" />
-              Now accepting feasibility requests
+              Clinical Research Service Organisation · SMO / CRSO
             </div>
           </Reveal>
 
           <Reveal delay={0.05}>
             <h1 className="font-display text-display-2xl font-bold tracking-tightest text-white text-balance text-shadow-soft">
-              Navigate the frontiers
+              Advancing Healthcare
               <br className="hidden sm:block" />
-              of clinical research, with
               <span className="block bg-gradient-to-r from-teal-200 via-white to-teal-100 bg-clip-text text-transparent">
-                audit-grade confidence.
+                Through Research Excellence.
               </span>
             </h1>
           </Reveal>
 
           <Reveal delay={0.12}>
             <p className="mt-7 max-w-2xl text-[17px] leading-relaxed text-white/85 text-pretty sm:text-[18px]">
-              <span className="font-semibold text-white">Velnox Clinical Research and Solutions</span> is a
-              next-generation CRO / SMO delivering ICH-GCP–compliant trials across therapeutic areas — with
-              documented operations from feasibility to archival.
+              <span className="font-semibold text-white">{COMPANY.legalName}</span> is dedicated
+              to supporting Sponsors, CROs, Hospitals, Investigators, Pharmaceutical and Medical
+              Device companies, and Academic Researchers — with end-to-end clinical research
+              solutions across India.
             </p>
           </Reveal>
 
           <Reveal delay={0.2}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Button href="/contact?intent=feasibility" size="lg" variant="white">
-                Get Started
+              <Button href="/contact?intent=partnership" size="lg" variant="white">
+                Partner with Velnox
                 <ArrowRight size={16} />
               </Button>
-              <Button href="/capabilities" size="lg" variant="ghost" className="text-white hover:bg-white/10 hover:text-white ring-1 ring-inset ring-white/30">
-                <Play size={14} fill="currentColor" /> Explore capabilities
+              <Button href="/services" size="lg" variant="ghost" className="text-white hover:bg-white/10 hover:text-white ring-1 ring-inset ring-white/30">
+                <Play size={14} fill="currentColor" /> Explore our services
               </Button>
             </div>
           </Reveal>
 
           <Reveal delay={0.28}>
             <ul className="mt-14 grid grid-cols-2 gap-x-6 gap-y-3 text-[12px] uppercase tracking-[0.14em] text-white/75 sm:flex sm:flex-wrap sm:items-center">
-              {["ICH-GCP", "NDCT Rules 2019", "NABL / CAP-aligned", "5-yr Archival"].map((t) => (
+              {["GCP-trained", "Phase I–IV", "Pollachi · Mysuru", "Pan-India network"].map((t) => (
                 <li key={t} className="flex items-center gap-2">
                   <ShieldCheck size={14} className="text-teal-300" strokeWidth={2} />
                   {t}
@@ -150,18 +149,18 @@ function HeroPanel({ videoReady }: { videoReady: boolean }) {
               <span className={`absolute inset-0 rounded-full bg-teal-300 ${videoReady ? "animate-ping" : ""}`} />
               <span className="absolute inset-0 rounded-full bg-teal-300" />
             </span>
-            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white">Trial Lifecycle</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white">Engagement Lifecycle</span>
           </div>
-          <span className="text-[11px] tabular text-white/70">SOP-mapped</span>
+          <span className="text-[11px] tabular text-white/70">End-to-end</span>
         </div>
         <ol className="divide-y divide-white/10">
           {[
-            { n: "01", label: "Feasibility", note: "Confidential · 7 days", sop: "SOP 3" },
-            { n: "02", label: "Site Activation", note: "ISF & EC dossier", sop: "SOP 2 · 5" },
-            { n: "03", label: "SIV & Enrolment", note: "AV consent · NDCT 2019", sop: "SOP 6 · 9" },
-            { n: "04", label: "Conduct & Monitoring", note: "Source-supported", sop: "SOP 11 · 17" },
-            { n: "05", label: "Safety", note: "24-hr SAE escalation", sop: "SOP 21", accent: true as const },
-            { n: "06", label: "Close-out & Archival", note: "5+ yr retention", sop: "SOP 25" },
+            { n: "01", label: "Feasibility", note: "Confidential protocol review" },
+            { n: "02", label: "Site Activation", note: "EC dossier & set-up" },
+            { n: "03", label: "Initiation & Enrolment", note: "Investigator training" },
+            { n: "04", label: "Conduct & Monitoring", note: "Source-supported execution" },
+            { n: "05", label: "Safety & Reporting", note: "Pharmacovigilance", accent: true as const },
+            { n: "06", label: "Close-out & Archival", note: "Controlled retention" },
           ].map((step) => (
             <li key={step.n} className="flex items-center gap-4 px-5 py-3.5">
               <span className="font-display tabular text-[12px] text-white/65 w-7">{step.n}</span>
@@ -176,7 +175,6 @@ function HeroPanel({ videoReady }: { videoReady: boolean }) {
                 </div>
                 <div className="text-[12px] text-white/70">{step.note}</div>
               </div>
-              <span className="hidden sm:inline-flex text-[11px] tabular text-white/55">{step.sop}</span>
             </li>
           ))}
         </ol>

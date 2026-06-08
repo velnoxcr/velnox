@@ -1,59 +1,40 @@
 export type Leader = {
   name: string;
   role: string;
+  shortRole: string;
   initials: string;
   bio: string;
   email?: string;
 };
 
+export const FOUNDER: Leader = {
+  name: "Mr. Gobinath R",
+  role: "Founder & Managing Director",
+  shortRole: "Founder · MD",
+  initials: "GR",
+  bio:
+    "Mr. Gobinath R is a Clinical Research Professional with extensive experience in clinical trial operations, site management, patient recruitment, regulatory affairs, ethics committee coordination, and project execution. He has successfully delivered multiple clinical research projects across Oncology, Cardiology, Ophthalmology, Neurology, Endocrinology, Pediatrics, and General Medicine — and founded Velnox with a mission to strengthen India's clinical research ecosystem. At Velnox, he champions opportunities for the next generation of Clinical Research Coordinators through practical training, mentorship, and hands-on learning.",
+  email: "info@velnoxresearch.com",
+};
+
 export const LEADERSHIP: Leader[] = [
+  FOUNDER,
   {
     name: "Mrs. Suruthi Kanagaraj",
     role: "Chief Executive Officer",
+    shortRole: "Chief Executive Officer",
     initials: "SK",
-    bio: "Leads Velnox's clinical-research operations end-to-end — from feasibility and site activation through pharmacovigilance and archival. Author of Velnox's operating SOPs and signatory on the company's quality framework. {/* TODO: Velnox to supply — career history, academic credentials, regulatory bodies served. */}",
-    email: "ceo@velnoxcr.com",
+    bio:
+      "Provides strategic leadership for Velnox — driving organisational growth, sponsor and stakeholder engagement, and business development across our partner network.",
+    email: "info@velnoxresearch.com",
   },
   {
-    name: "Mr. Gobinath R",
-    role: "Managing Director",
-    initials: "GR",
-    bio: "Owns Velnox's commercial direction, sponsor relationships and regulatory posture. Reviewing and approving authority on Velnox's SOP framework. {/* TODO: Velnox to supply — career history, sponsor portfolio, industry affiliations. */}",
-    email: "md@velnoxcr.com",
-  },
-];
-
-export type Advisor = {
-  name: string;
-  role: string;
-  specialty: string;
-  bio: string;
-};
-
-// TODO: Velnox to supply — Advisory Committee roster. Placeholder structure shown below.
-export const ADVISORY_COMMITTEE: Advisor[] = [
-  {
-    name: "Advisor name 1",
-    role: "Chair, Scientific & Advisory Committee",
-    specialty: "Regulatory Affairs",
-    bio: "TODO: Velnox to supply — biography emphasising regulatory experience, academic affiliation and CR leadership.",
-  },
-  {
-    name: "Advisor name 2",
-    role: "Member, Scientific & Advisory Committee",
-    specialty: "Oncology",
-    bio: "TODO: Velnox to supply.",
-  },
-  {
-    name: "Advisor name 3",
-    role: "Member, Scientific & Advisory Committee",
-    specialty: "Pharmacovigilance",
-    bio: "TODO: Velnox to supply.",
-  },
-  {
-    name: "Advisor name 4",
-    role: "Member, Scientific & Advisory Committee",
-    specialty: "Biostatistics",
-    bio: "TODO: Velnox to supply.",
+    name: "Mr. Selvakumar D",
+    role: "Chief Operating Officer",
+    shortRole: "Chief Operating Officer",
+    initials: "SD",
+    bio:
+      "Oversees operational excellence across Velnox — project execution, process optimisation and end-to-end clinical research delivery from start-up through close-out.",
+    email: "info@velnoxresearch.com",
   },
 ];
